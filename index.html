@@ -23,13 +23,13 @@
 						<div class="content">
 							<div class="inner">
 								<h1>Ivo John</h1>
-								<p>Hi! Welcome to my portfolio page. Here you can find information about projects I am currently finishing, <br/>about my education and skills.
+								<p>Hi! Welcome to my portfolio. Here you can find information about projects I am currently finishing, <br/> my education and skills.
 									Feel free to check my projects below, read about my degrees or contact me!</p>
 								<form method="post" action="#">
 									<div class="fields">
 										<div class="field third">
 											<h4><br/>EEG classification</h4>
-											<p><a href='#project1'>In this project I applied Python MNE library to preprocess EEG data, 
+											<p><a href='#project1'>In this project I applied Python MNE library to preprocess EEG data 
 												and then I classified them with LSTM network</a></p>										
 											</div>
 											<div class="field third">
@@ -39,7 +39,7 @@
 											</div>
 											<div class="field third">
 													<h4><br/>X-ray classification</h4>
-													<p><a href='#project3'>Under this link you can find a CNN network which classifies chest x-rays. 
+													<p><a href='#project3'>Under this link you can find a CNN network which classifies chest <br/>x-rays. 
 														The network is suited in GUI written in PyQt5.</a></p>
 											</div>										
 										</div>
@@ -70,17 +70,13 @@
 						<!-- About -->
 							<article id="about">
 								<h2 class="major">About</h2>
-								<p>Hi, my name is Ivo John. I am a fifth year Medicine student on Warsaw University of Medicine and final year student of 
-									Mechatronics with English as a lecture language on Warsaw University of Technology.</p>
+								<p>Hi, my name is Ivo John. I am a fifth year Medicine student at Warsaw University of Medicine and final year student of 
+									Mechatronics with English as a lecture language at Warsaw University of Technology.</p>
 								<p>I am interested in Deep Learning in Medical applications and all things you can see on this page I have learned myself. </p>
 								<p>	During my everyday classes in Warsaw's hospitals I still can observe plenty of room for improvement in the field of technologies applied in medicine.
 									This motivates me to read and learn about what can be done in both near and distant future. 
 									<br/>Thanks to my engineering studies I have also a background in math, physics and technical approach to better understand 
-									those applications and due to my interest in this subjects I can expand this knowledge and build up neccessary skills.
-								</p>
-								<p>
-									Apart from my educations and technical interests I also spend my free time in the gym training powerlifting. Moreover
-									I try to be in touch with the general knowledge and also read things outside textbooks.
+									those applications. Due to my interest in this subjects I can expand this knowledge and build up neccessary skills.
 								</p>
 							</article>
 
@@ -138,38 +134,38 @@
 								The data contains 3 EOG channels and 61 EEG.<br/>
 								Firstly I visualized tha data with interactive plot visible in the header of this text. This enables to visualiy check the data, which
 								in some cases turns out to be corrupted. In the next step I removed the first 5 seconds of recording and calculated influence of
-								eye movements on the EEG channels. No influences were found, but this was probably due to file type and its not full compatibility, not reall lack of eye movement distortions.
-								<br/> Afterwards I divided data into epochs based on the created annotations and renamed events according to more readable manner. The channels were
+								eye movements on the EEG channels. No influences were found, but this was probably due to the file type and its not full compatibility, not real lack of eye movement distortions.
+								<br/> Afterwards I divided data into epochs based on the created annotations and renamed events accordingly to more readable manner. Channels were
 								one more time visualized with interactive plot.
 								<span class="image main"><img src="images/eeg-2.png" alt="" /></span>
 								<br/>Next steps include filtering and downsampling. The filtering was done with high pass filter of 0.5Hz and low pass filter of 50Hz, both FFT filters.
 								Data was also downsampled from original 512Hz to 256Hz to reduce computational cost.
-								<br/> In the last step I saved the data into Pandas DataFrame and assured that the format is correct by viewing head of the frame.
+								<br/> In the last step I saved the data into Pandas DataFrame and made sure that the format is correct by viewing head of the frame.
 							</p>
 
 							<h3>Pipeline</h3>
 							<p>
-								Steps from the previous part were placed info pipeline used for training the network. The methods provided by this module includes
-								reading .GDF file (in which the data was provided), creating epochs with given length from this file, filtering them with a 
-								given frequencies, downsampling to desired frequency and then transforming into DataFrame with a possibility of saving to .csv file.
+								Steps from the previous part were placed into pipeline used for training the network. The methods provided by this module include
+								reading GDF file (in which the data was provided), creating epochs with given length from this file, filtering them with a 
+								given frequencies, downsampling to desired frequency and then transforming into the DataFrame with a possibility of saving to .csv file.
 							</p>
 
 							<h3>Classification with LSTM</h3>
 							<p>
-								The goal of this part was to classify the provided EEG epochs according to one of seven classes (so movement vs movement).
+								The goal of this part was to classify the provided EEG epochs accordingly to one of seven classes (so movement vs movement).
 								This was done with creating a set of functions to divide the data info X and y and to format them in a way suitable for LSTM
 								input. <br/>
 								All hyperparameters were grouped in one place and changed to find the most suitable ones.
 								<span class="image main"><img src="images/eeg-3.png" alt="" /></span>
-								I tried different models with the one above providing the best trade-off between computational expenses and accuracy.
-								Unfortunately the accuracy was still below my expectations that is why the project is still in development. The highest one was
+								I tried different architectures together with the one above providing the best trade-off between computational expenses and accuracy.
+								Unfortunately the accuracy was still below my expectations that is why the project is still under development. The highest one was
 								around 30% during training and according to the information from the original paper it is possible to exceed 40% accuracy on average.
 								With some more complicated models I reached the accuracy of 40% but it was still heavily varying between the epochs.
 							</p>
 
 							<h3>Discussion</h3>
-							<p>To provide better accuracy I believe that the more preprocessing is needed, including manual removal of corrupted channels and 
-								EOC artefacts. Apart from that the more complicated model would might be beneficial and different approaches, including some techniques from
+							<p>To provide better accuracy I believe that more preprocessing is needed, including manual removal of corrupted channels and 
+								EOC artefacts. Apart from that more complicated model would might be beneficial, also different approaches, including some techniques from
 								machine learning might be successful. Differencing the signal to obtain stationary time-series turned out to be only slightly beneficial.
 								Decreasing learning rate and heavier dropout might also be effective.
 							</p>
@@ -184,7 +180,7 @@
 							<h3>Abstract</h3>
 							<p>In this project I performed analysis and plotting of a time series of energy consumption. Data was obtained 
 								from hourly measurements of energy consumption done by PJM Interconnection published on kaggle. <br/>
-								I explored and plotted the data with interactive plots done in matplotlib and then process them to a form suitable for network input.
+								I explored and plotted the data with interactive plots done in matplotlib and then processed them to a form suitable for network input.
 								I tried different approaches, from the simplest, one neuron network to combination of 2D CNN with LSTM. The best prediction reached
 								 mean squared error of 6.2e-5 on scaled data.
 								 <h5><a href="https://github.com/IvoJohn/Project2-Energy-consumption-time-series">Full code on GitHub</a></h5>
@@ -194,15 +190,15 @@
 							<h3>Data exploration</h3>
 							<p>
 								The data is consisted of a single feature time-series registered every hour. The registered value is an energy consumption in megawats.
-								There are no missing values and the total amount of them is equal to 145 366. The beginning of measurements is 01.01.2002 01:00 and the end is
+								There are no missing values and the total amount of them is equal to 145 366. The beginning of measurements was set to 01.01.2002 01:00 and the end to
 								03.08.2018 00:00.
 								The mean value of energy consumption is 32080.22MW, standard deviation is 6464.01MW, minimal value is 14544.0MW, maximal value is 62009.0MW
 								<span class="image main"><img src="images/timeseries-1.png" alt="" /></span>
 								<span class="image main"><img src="images/timeseries-2.png" alt="" /></span>
 								Above we can see histogram with 20-bins. The population is right-skewed. Below there is a box plot showing both the trend and seasonality 
 								of the data. There is no observable trend in the data but there is a visible seasonality on the yearly-basis. After the closer inspection we 
-								can also observe sesonality on the daily-basis. In the code there is more plots and the one below is interactive, enabling to show
-								seasonality during year, week and day of the week with possibility of choosing any avaiable day and year.
+								can also observe sesonality on the daily-basis. In the code there are more plots and the one below is interactive, enabling to show
+								seasonality during year, week and day of the week with possibility of choosing any available day and year.
 								<span class="image main"><img src="images/timeseries-3.png" alt="" /></span>
 								In the code there is also a plot for multiplicative and additive decomposition.
 								<span class="image main"><img src="images/timeseries-4.png" alt="" /></span>
@@ -211,12 +207,12 @@
 							</p>
 							<h3>Data preparation</h3>
 							<p>
-								In this step I prepared the data to fit the format needed by neural networks architectures. Buf before that I check the stationarity
+								In this step I prepared the data to fit the format needed by neural networks architectures. Buf before that I checked the stationarity
 								of the data. This was done with Augmented Dickey-Fuller test.<br/>
 								Augmented Dickey-Fuller test is a type of unit root test which performs autoregression with the null hypothesis of a time-series
-								being non-stationary. The P-value of this test was equal to 2.02e-30 which is way below the threshold value of 5% so I abondoned further
-								processing data to eliminate its non-stationarity since it was virtualy non-existing.
-								The data was divided into training, validation and test sets, scalled with a scaller fitted only to training data to avoid
+								being non-stationary. The P-value of this test was equal to 2.02e-30 which is way below the threshold value of 5% so I aborted further
+								processing data to eliminate its non-stationarity since it was virtualy non-existant.
+								The data was divided into training, validation and test sets, scaled with a scaler fitted only on training data to avoid
 								lekage of any information to validation and test sets and as the last step splitted into X and y with window size of 30 and shift of 1.
 								Sequence length was set to 20.
 							</p>
@@ -224,19 +220,19 @@
 							<p>
 								<h5>Single layer model</h5>
 								<span class="image main"><img src="images/timeseries-5.png" alt="" /></span>
-								As the reference point I started from the simples possible model, with only one layer and one neuron. Due to small computational cost
+								As the reference point I started from the simplest possible model, with only one layer and one neuron. Due to small computational cost
 								I decided to find the most optimal learning rate with Learning Rate Scheduler and plot of loss vs learning rate. The most optimal value
-								was equal to 2e-3 so it was set as the learning rate for a Adam optimizer in the final model. I used Huber loss as it is more resistant
+								was equal to 2e-3 so it was set as the learning rate for an Adam optimizer in the final model. I used Huber loss as it is more resistant
 								to outliers (like the one presented in data, which corresponds to the hurracane which takes place during the measurement period, resulting
-								in decreass of energy consumption) and as a metric I set Mean Standard Error. The model was trained for 120 epochs and still have not reached
+								in decrease of energy consumption) and as a metric I set Mean Standard Error. The model was trained for 120 epochs and still have not reached
 								platau nor the validation loss started increasing or fluctuating. This shows that the model could be trained even longer.
 								The Mean Squared Error calculated on previously unseen test set was equal to 3.77e-4.
 								<span class="image main"><img src="images/timeseries-6.png" alt="" /></span>
 								<h5>Multi layer model</h5>
 								<span class="image main"><img src="images/timeseries-7.png" alt="" /></span>
-								The next model was still composed of only fully connected layers But this time I applied many more neurons to each of the layers
+								The next model was still composed of only fully connected layers but this time I applied many more neurons to each of the layers
 								and also added Dropout equal to 20% between each of them. The model clearly overfitted which is visible both on the discrapency 
-								of values between train loss and validation loss and also on the plots. This could be prevented with fewer layers (so simpler model)
+								of values between train loss and validation loss and also on the plots. This could be prevented by creating fewer layers (so simpler model)
 								or with bigger dropout value between layers. The value of MSE on test set was equal to 1e-3.
 								<span class="image main"><img src="images/timeseries-8.png" alt="" /></span>
 								<h5>LSTM</h5>
@@ -249,11 +245,11 @@
 								to this data.
 								<span class="image main"><img src="images/timeseries-10.png" alt="" /></span>
 								<span class="image main"><img src="images/timeseries-11.png" alt="" /></span>
-								Also the value of MSE on test set was the smalles among applied architectures: 6.2e-5.<br/><br/>
+								Also the value of MSE on test set was the smallest among applied architectures: 6.2e-5.<br/><br/>
 								<h5>LSTM with Convolution</h5>
 								<span class="image main"><img src="images/timeseries-12.png" alt="" /></span>
 								This architecture turned out to be the worst among applied ones. After training for 50 epochs it clearly overfitted the data with 
-								training loss an order of magnitute smaller than in the case of only LSTM layers and the value of validation loss was on the contrary
+								training loss an order of magnitute smaller than in the case of only LSTM layers and the value of validation loss was on the contrary, one
 								order of magnitute bigger.
 								The value of MSE on test data was the worst and equal to 1.3e-3.
 								<span class="image main"><img src="images/timeseries-13.png" alt="" /></span>
@@ -261,7 +257,7 @@
 								The most effective network in this case turned out to be the one constructed with two LSTM layers, the quality of predictions was
 								high. It could be even higher if the network would be trained for a longer time or maybe slightly bigger. The application of a correct
 								architecture enables to reduce the Mean Squared Error on previously unseen test set by the two orders of magnitude.
-								Another approaches which could be applied would be forecasting the data after removing sesonality or with other recurrent architectures.
+								Other approaches which could be applied would be forecasting the data after removing sesonality or with other recurrent architectures.
 
 								<p><h5><a href="https://github.com/IvoJohn/Project2-Energy-consumption-time-series">Full code on GitHub</a></h5></p>
 							</p>
@@ -279,39 +275,39 @@
 							
 							<h3>Interface</h3>
 							<span class="image main"><img src="images/xray-1.png" alt="" /></span>
-							<p>The main functionality of the program is provided after uploading image with a button opening file menager.
-								The first network is responsible for classifying if the uploaded image presents chest x-ray or not. In the letter case an error
-								window shows up and asks for uplouding different image. If the image is correct the result of classification with assigned
+							<p>The main functionality of the program is provided after uploading image with a button opening file manager.
+								The first network is responsible for classifying if the uploaded image presents chest x-ray or not. In the latter case an error
+								window shows up and asks for uploading different image. If the image is correct the result of classification with assigned
 								certainty of it is shown.
 								<span class="image main"><img src="images/xray-3.png" alt="" /></span>
 								Apart from classifying images the interface offers possibility to read the short documentation of the backend solutions and
-								to remaind oneselfs that this is not anything close to a clinicaly ready solution. Both pieces of information are avaiable after
+								to remaind oneselves that this is nowhere close to a clinicaly ready solution. Both pieces of information are avaiable after
 								clicking on a designeted buttons.
 								<span class="image main"><img src="images/xray-2.png" alt="" /></span>
 							</p>
 							
 							<h3>Backend</h3>
 							<p>
-								The networks which provides core functionality of the program were written in Tensorflow with Keras. Both of them have 
-								the same architecture with pretrained VGG16 followed by Flatten layer, two dropouts and two Dense layers. The usage of 
+								The networks which provide core functionality of the program were written in TensorFlow with Keras backend. Both of them have 
+								the same architecture with pretrained VGG16 followed by Flatten layer, two Dropouts and two Dense layers. The usage of 
 								pretrained network exceeded all other applied approaches and reached over 93% of accuracy as early as in the second epoch.
 								The network classifying non-pneumonia vs pneumonia images was trained for 15 epochs. The network classifying presence of 
-								a chest x-ray on the uploaded image was trained for only one epochs due to custom callback which interupted training
+								a chest x-ray on the uploaded image was trained for only one epoch due to custom callback which interupted training
 								after exceeding 97% of accuracy.
 								In both cases image data generators were used to provide more variability in the training set due to image augmentation. In the case of pneumonia detection
-								the augmentation was rather small due to the assumption that x-ray images are performed in a stanradized procedure and there
-								should not be a big variance between their rotation etc.
+								the augmentation was rather small due to the assumption that x-ray images are performed in a standarized procedure and there
+								should not be a big difference between their rotation etc.
 								Also in the case of pneumonia detection I applied weights to the classes since the number of positive examples was almost three
-								times larger. Due to only two classes weights were calculated by hand, without usage of scikit-learn tools.
+								times larger. Due to only two classes weights were calculated by hand, without usage of scikit-learn tools.dis
 								<span class="image main"><img src="images/xray-4.png" alt="" /></span>
 							</p>
 
 							<h3>Further development</h3>
 							<p>
-								The further developement of the project could include adding another classes to distingish between, like separating bacterial
+								The further developement of the project could include adding another classes to distinguish between, like separating bacterial
 								from viral pneumonia, or lobar from intersitial pneumonia. Another functionality could be visualisation of convolutional filters
 								activation in the network. Probably the most interesing solution would be an automatic description generator, but this is limited
-								by the amount of data avaiable.
+								by the amount of data available.
 							</p>
 
 							<p><h5><a href="https://github.com/IvoJohn/Project3-RTG-classification-with-GUI">Full code on GitHub</a></h5></p>
