@@ -62,21 +62,21 @@
 						<!-- Contact -->
 							<article id="contact">
 								<h2 class="major">Contact</h2>
-								<p>Email: ivoajohn@gmail.com</p>
-								<p>Github: IvoJohn</p>
+								<p>Email: <br>ivoajohn@gmail.com</p><br>
+								<p>Github: <br>IvoJohn</p>
 							</article>
 							
 
 						<!-- About -->
 							<article id="about">
 								<h2 class="major">About</h2>
-								<p>Hi!, my name is Ivo John. I am a fifth year Medicine student on Warsaw University of Medicine and final year student of 
+								<p>Hi, my name is Ivo John. I am a fifth year Medicine student on Warsaw University of Medicine and final year student of 
 									Mechatronics with English as a lecture language on Warsaw University of Technology.</p>
 								<p>I am interested in Deep Learning in Medical applications and all things you can see on this page I have learned myself. </p>
 								<p>	During my everyday classes in Warsaw's hospitals I still can observe plenty of room for improvement in the field of technologies applied in medicine.
-									This motivates me to read and learn about what can be done in both distant future and tomorrow. Thanks to my engineering studies
-									I have also a background in math or physics to better understand those applications and due to my interest in this subjects I can expand
-									this knowledge and build up neccessary skills.
+									This motivates me to read and learn about what can be done in both near and distant future. 
+									<br/>Thanks to my engineering studies I have also a background in math, physics and technical approach to better understand 
+									those applications and due to my interest in this subjects I can expand this knowledge and build up neccessary skills.
 								</p>
 								<p>
 									Apart from my educations and technical interests I also spend my free time in the gym training powerlifting. Moreover
@@ -87,8 +87,7 @@
 						<!-- CV -->
 							<article id="cv">
 								<h2 class="major">Curriculum Vitae</h2>
-								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
-								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+								<span class="image main"><img src="images/cv.png" alt="" /></span>
 							</article>
 
 						<!-- Contact -->
@@ -124,20 +123,73 @@
 
 						<!-- About -->
 						<article id="project1">
-							<h2 class="major">About</h2>
-							<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
-							<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+							<h2 class="major">EEG Classification</h2>
+							<span class="image main"><img src="images/eeg-0.png" alt="" /></span>
+							<h3>Abstract</h3>
+							<p>This project is still under development. <br/>The goal was to classify several hand movements on the basis of EEG signal
+							taken over 61 channels. Preprocessing and visualization of data was done with MNE library, as well as pipeline used during LSTM 
+							training.
+						<h5><a href="https://github.com/IvoJohn/Project1-Decoding-upper-limb-movements-from-EEG">Full code on GitHub</a></h5>
+					</p>
+
+							<h3>Preprocessing and visualizing data</h3>
+							<span class="image main"><img src="images/eeg-1.png" alt="" /></span>
+							<p>The dataset includes 15 participants with 10 files per person. Each file contains 42 events of evenly distributed six different movements.
+								The data contains 3 EOG channels and 61 EEG.<br/>
+								Firstly I visualized tha data with interactive plot visible in the header of this text. This enables to visualiy check the data, which
+								in some cases turns out to be corrupted. In the next step I removed the first 5 seconds of recording and calculated influence of
+								eye movements on the EEG channels. No influences were found, but this was probably due to file type and its not full compatibility, not reall lack of eye movement distortions.
+								<br/> Afterwards I divided data into epochs based on the created annotations and renamed events according to more readable manner. The channels were
+								one more time visualized with interactive plot.
+								<span class="image main"><img src="images/eeg-2.png" alt="" /></span>
+								<br/>Next steps include filtering and downsampling. The filtering was done with high pass filter of 0.5Hz and low pass filter of 50Hz, both FFT filters.
+								Data was also downsampled from original 512Hz to 256Hz to reduce computational cost.
+								<br/> In the last step I saved the data into Pandas DataFrame and assured that the format is correct by viewing head of the frame.
+							</p>
+
+							<h3>Pipeline</h3>
+							<p>
+								Steps from the previous part were placed info pipeline used for training the network. The methods provided by this module includes
+								reading .GDF file (in which the data was provided), creating epochs with given length from this file, filtering them with a 
+								given frequencies, downsampling to desired frequency and then transforming into DataFrame with a possibility of saving to .csv file.
+							</p>
+
+							<h3>Classification with LSTM</h3>
+							<p>
+								The goal of this part was to classify the provided EEG epochs according to one of seven classes (so movement vs movement).
+								This was done with creating a set of functions to divide the data info X and y and to format them in a way suitable for LSTM
+								input. <br/>
+								All hyperparameters were grouped in one place and changed to find the most suitable ones.
+								<span class="image main"><img src="images/eeg-3.png" alt="" /></span>
+								I tried different models with the one above providing the best trade-off between computational expenses and accuracy.
+								Unfortunately the accuracy was still below my expectations that is why the project is still in development. The highest one was
+								around 30% during training and according to the information from the original paper it is possible to exceed 40% accuracy on average.
+								With some more complicated models I reached the accuracy of 40% but it was still heavily varying between the epochs.
+							</p>
+
+							<h3>Discussion</h3>
+							<p>To provide better accuracy I believe that the more preprocessing is needed, including manual removal of corrupted channels and 
+								EOC artefacts. Apart from that the more complicated model would might be beneficial and different approaches, including some techniques from
+								machine learning might be successful. Differencing the signal to obtain stationary time-series turned out to be only slightly beneficial.
+								Decreasing learning rate and heavier dropout might also be effective.
+							</p>
+
+							<p><h5><a href="https://github.com/IvoJohn/Project1-Decoding-upper-limb-movements-from-EEG">Full code on GitHub</a></h5></p>
+
 						</article>
 
 						<article id="project2">
 							<h2 class="major">Time series analysis</h2>
-							<span class="image main"><img src="images/timeseries-intro.png" alt="" /></span>
+							<span class="image main"><img src="images/timeseries-0.png" alt="" /></span>
 							<h3>Abstract</h3>
 							<p>In this project I performed analysis and plotting of a time series of energy consumption. Data was obtained 
-								from hourly measurements of energy consumption done by PJM Interconnection and published on kaggle. <br/>
+								from hourly measurements of energy consumption done by PJM Interconnection published on kaggle. <br/>
 								I explored and plotted the data with interactive plots done in matplotlib and then process them to a form suitable for network input.
-								I tried different approaches, from the simplest, one neuron network to combination of 2D CNN with LSTM. The best prediction obtained
-								 mean squared error of 6.2e-5.</p>
+								I tried different approaches, from the simplest, one neuron network to combination of 2D CNN with LSTM. The best prediction reached
+								 mean squared error of 6.2e-5 on scaled data.
+								 <h5><a href="https://github.com/IvoJohn/Project2-Energy-consumption-time-series">Full code on GitHub</a></h5>
+								</p>
+								 
 
 							<h3>Data exploration</h3>
 							<p>
@@ -154,12 +206,12 @@
 								<span class="image main"><img src="images/timeseries-3.png" alt="" /></span>
 								In the code there is also a plot for multiplicative and additive decomposition.
 								<span class="image main"><img src="images/timeseries-4.png" alt="" /></span>
-								Above we have a plot of moving average with window set to 31 days. This plot is also interactive, with possibility to change the size
+								Above we have a plot of moving average with window set to 31 days. This plot is also interactive, and one can change the size
 								of the window from 10 to 88 days. With the plot above we can also observe clear seasonality of the data.
 							</p>
 							<h3>Data preparation</h3>
 							<p>
-								In this step I prepared the data to suit the format needed by neural networks architectures. Buf before that I check the stationarity
+								In this step I prepared the data to fit the format needed by neural networks architectures. Buf before that I check the stationarity
 								of the data. This was done with Augmented Dickey-Fuller test.<br/>
 								Augmented Dickey-Fuller test is a type of unit root test which performs autoregression with the null hypothesis of a time-series
 								being non-stationary. The P-value of this test was equal to 2.02e-30 which is way below the threshold value of 5% so I abondoned further
@@ -172,8 +224,8 @@
 							<p>
 								<h5>Single layer model</h5>
 								<span class="image main"><img src="images/timeseries-5.png" alt="" /></span>
-								As the reference point I started from simples possible model, with only one layer and one neuron. Due to small computational cost
-								I decided to find the most optimal learning rate with Learning Rate Scheduler and plot of learning rate vs epoch. The most optimal value
+								As the reference point I started from the simples possible model, with only one layer and one neuron. Due to small computational cost
+								I decided to find the most optimal learning rate with Learning Rate Scheduler and plot of loss vs learning rate. The most optimal value
 								was equal to 2e-3 so it was set as the learning rate for a Adam optimizer in the final model. I used Huber loss as it is more resistant
 								to outliers (like the one presented in data, which corresponds to the hurracane which takes place during the measurement period, resulting
 								in decreass of energy consumption) and as a metric I set Mean Standard Error. The model was trained for 120 epochs and still have not reached
@@ -211,7 +263,7 @@
 								architecture enables to reduce the Mean Squared Error on previously unseen test set by the two orders of magnitude.
 								Another approaches which could be applied would be forecasting the data after removing sesonality or with other recurrent architectures.
 
-								<p><h5><a href=" ">Full code on GitHub</a></h5></p>
+								<p><h5><a href="https://github.com/IvoJohn/Project2-Energy-consumption-time-series">Full code on GitHub</a></h5></p>
 							</p>
 						</article>
 
@@ -222,6 +274,7 @@
 							<p>In this project I used two convolutional neural networks to detect pneumonia on chest x-rays. The accuracy on training set
 								exceeded 96%. The working networks were placed inside graphical user interface made with PyQt5. The interface provides easy
 								and intuitlional way of interacting with backend networks.
+								<h5><a href="https://github.com/IvoJohn/Project3-RTG-classification-with-GUI">Full code on GitHub</a></h5>
 							</p>
 							
 							<h3>Interface</h3>
@@ -245,8 +298,8 @@
 								The network classifying non-pneumonia vs pneumonia images was trained for 15 epochs. The network classifying presence of 
 								a chest x-ray on the uploaded image was trained for only one epochs due to custom callback which interupted training
 								after exceeding 97% of accuracy.
-								In both cases image data generators were used to provide more variability in the training set. In the case of pneumonia detection
-								the augmentation was rather small due to the assumption that x-ray images have a standarized procedure of performing and there
+								In both cases image data generators were used to provide more variability in the training set due to image augmentation. In the case of pneumonia detection
+								the augmentation was rather small due to the assumption that x-ray images are performed in a stanradized procedure and there
 								should not be a big variance between their rotation etc.
 								Also in the case of pneumonia detection I applied weights to the classes since the number of positive examples was almost three
 								times larger. Due to only two classes weights were calculated by hand, without usage of scikit-learn tools.
@@ -261,7 +314,7 @@
 								by the amount of data avaiable.
 							</p>
 
-							<p><h5><a href=" ">Full code on GitHub</a></h5></p>
+							<p><h5><a href="https://github.com/IvoJohn/Project3-RTG-classification-with-GUI">Full code on GitHub</a></h5></p>
 						</article>
 
 						<!-- Elements -->
